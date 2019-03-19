@@ -7,10 +7,10 @@
 #a6 = quantas palavras "riscv" são possiveis de serem formadas
 
 .data
-	str: .asciiz "xrnrclszumskvbqchuwtgyvieip"
+  str: .asciiz "xrnrclszumskvbqchuwtgyvieip"
 
 .text
-	addi a0, zero, 0
+  addi a0, zero, 0
   addi a1, zero, 0
   addi a2, zero, 0
   addi a3, zero, 0
@@ -29,7 +29,7 @@
   addi s2, zero, 0
 
 count:
-	lb s2, (0)s1
+  lb s2, (0)s1
   beq s2, a5, set_ans
   beq s2, s3, case_r
   beq s2, s4, case_i
@@ -43,23 +43,23 @@ j count
 case_r:
   addi a0, a0, 1
   addi s1, s1, 1
-	j count
+  j count
 case_i:
-	addi a1, a1, 1
+  addi a1, a1, 1
   addi s1, s1, 1
-	j count
+  j count
 case_s:
-	addi a2, a2, 1
+  addi a2, a2, 1
   addi s1, s1, 1
-	j count
+  j count
 case_c:
-	addi a3, a3, 1
+  addi a3, a3, 1
   addi s1, s1, 1
-	j count
+  j count
 case_v:
-	addi a4, a4, 1
+  addi a4, a4, 1
   addi s1, s1, 1
-	j count
+  j count
 
 set_ans:
   blt a0, a6, set_r
@@ -71,20 +71,19 @@ set_ans:
   j fim
     
 set_r:
-	add a6, zero, a0
+  add a6, zero, a0
   j set_ans
 set_i:
-	add a6, zero, a1
+  add a6, zero, a1
   j set_ans
 set_s:
-	add a6, zero, a2
+  add a6, zero, a2
   j set_ans
 set_c:
-	add a6, zero, a3
+  add a6, zero, a3
   j set_ans
 set_v:
-	add a6, zero, a4
+  add a6, zero, a4
   j set_ans
 
 fim:
-    
