@@ -7,7 +7,7 @@
 #s2 = resultado final
 
 .data
-	num: .word 1111
+	num: .word 9999
 
 .text
     lw a0, num
@@ -17,10 +17,11 @@
     addi a4, zero, 0
     addi a5, zero, 10
     addi s2, zero, 0
+    addi s8, zero, 0
     addi s9, zero, 0
 
 decomposition:
-    beq a0, zero, fim # caso chegue em 0, acabou o programa
+    beq a0, zero, sum # caso chegue em 0, acabou o programa
     # modulo 10 #
     add a4, a4, a0
     div a0, a0, a5
@@ -29,7 +30,10 @@ decomposition:
     # modulo 10 #
     call call_fatorial # chama o fatorial
     div a0, a0, a5 # divide o total por 10 pra pegar o próx. termo
-    add s2, s2, a2 # salva em s2 o resultado do fatorial
+    addi sp, sp, -4
+    sw a2, (0)sp
+    addi s8, s8, 1
+    #add s2, s2, a2 # salva em s2 o resultado do fatorial
     addi a2, zero, 1 # reseta o resultado do fatorial
     addi a4, zero, 0 # reseta o auxiliar
     
@@ -44,5 +48,14 @@ call_fatorial:
     
 	.retorno:
     	ret
+
+sum:
+	beq s8, zero, fim
+	lw s9, (0)sp
+    addi sp, sp, 4
+    add s2, s2, s9
+    addi s8, s8, -1
+    
+j sum
 
 fim:
