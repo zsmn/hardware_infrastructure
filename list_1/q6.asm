@@ -6,14 +6,18 @@
 #a5 = cte. 10
 #s2 = resultado final
 
+.data
+	num: .word 1111
+
 .text
-    addi a0, zero, 1234
+    lw a0, num
     addi a1, zero, 10
     addi a2, zero, 1
     addi a3, zero, 1
     addi a4, zero, 0
     addi a5, zero, 10
     addi s2, zero, 0
+    addi s9, zero, 0
 
 decomposition:
     beq a0, zero, fim # caso chegue em 0, acabou o programa
