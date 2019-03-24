@@ -1,89 +1,66 @@
-#a0 = armazena o 'r'
-#a1 = armazena o 'i'
-#a2 = armazena o 's'
-#a3 = armazena o 'c'
-#a4 = armazena o 'v'
-#a5 = cte. 0
-#a6 = quantas palavras "riscv" são possiveis de serem formadas
-
 .data
-  str: .asciiz "xrnrclszumskvbqchuwtgyvieip"
-
+    str: .asciiz "sdjkhsdkjhdkjrlksgvlakdfgnai nlgkiscvhndlkhskljjmkljjv"
+ 
 .text
-  addi a0, zero, 0
-  addi a1, zero, 0
-  addi a2, zero, 0
-  addi a3, zero, 0
-  addi a4, zero, 0
-	
-  addi a5, zero, 0
-  addi a6, zero, 2047
-    
-  addi s3, zero, 'r'
-  addi s4, zero, 'i'
-  addi s5, zero, 's'
-  addi s6, zero, 'c'
-  addi s7, zero, 'v'
-    
-  la s1, str
-  addi s2, zero, 0
-
-count:
-  lb s2, (0)s1
-  beq s2, a5, set_ans
-  beq s2, s3, case_r
-  beq s2, s4, case_i
-  beq s2, s5, case_s
-  beq s2, s6, case_c
-  beq s2, s7, case_v
-    
-  addi s1, s1, 1
-j count
-
-case_r:
-  addi a0, a0, 1
-  addi s1, s1, 1
-  j count
-case_i:
-  addi a1, a1, 1
-  addi s1, s1, 1
-  j count
-case_s:
-  addi a2, a2, 1
-  addi s1, s1, 1
-  j count
-case_c:
-  addi a3, a3, 1
-  addi s1, s1, 1
-  j count
-case_v:
-  addi a4, a4, 1
-  addi s1, s1, 1
-  j count
-
-set_ans:
-  blt a0, a6, set_r
-  blt a1, a6, set_i
-  blt a2, a6, set_s
-  blt a3, a6, set_c
-  blt a4, a6, set_v
-    
-  j fim
-    
-set_r:
-  add a6, zero, a0
-  j set_ans
-set_i:
-  add a6, zero, a1
-  j set_ans
-set_s:
-  add a6, zero, a2
-  j set_ans
-set_c:
-  add a6, zero, a3
-  j set_ans
-set_v:
-  add a6, zero, a4
-  j set_ans
-
-fim:
+    addi a1, zero, 0 #contar r
+    addi a2, zero, 0 #contar i
+    addi a3, zero, 0 #contar s
+    addi a4, zero, 0 #contar c
+    addi a5, zero, 0 #contar v
+    addi a6, zero, 0 #fim da string
+    addi t0, zero, 114 # r
+    addi t1, zero, 105 # i
+    addi t2, zero, 115 # s
+    addi t3, zero, 99  # c
+    addi t4, zero, 118 # v
+ 
+    la s1, str
+    loop:
+    lb s2, (0)s1
+    beq s2, a6 endloop
+    addi s1, s1, 1
+    beq s2, t0, somar # incrementa o contador de r
+    beq s2, t1, somai # incrementa o contador de i
+    beq s2, t2, somas # incrementa o contador de s
+    beq s2, t3, somac # incrementa o contador de c
+    beq s2, t4, somav # incrementa o contador de v
+    j loop
+    endloop:
+    addi s3, a1, 0 # assume que a1 eh o menor
+    backcomp:
+    blt a2, s3, mena2 #confere se a2 eh o novo minimo
+    blt a3, s3, mena3 #confere se a3 eh o novo minimo
+    blt a4, s3, mena4 #confere se a4 eh o novo minimo
+    blt a5, s3, mena5 #confere se a5 eh o novo minimo
+    j end
+   
+    mena2:
+    addi s3, a2, 0 # atualizando o novo tamanho minimo
+    j backcomp
+    mena3:
+    addi s3, a3, 0 # atualizando o novo tamanho minimo
+    j backcomp
+    mena4:
+    addi s3, a4, 0 # atualizando o novo tamanho minimo
+    j backcomp
+    mena5:
+    addi s3, a5, 0 # atualizando o novo tamanho minimo
+    j backcomp
+    somar:
+        addi a1, a1, 1 # incrementando a1
+        j loop
+    somai:
+        addi a2, a2, 1 # incrementando a2
+        j loop
+    somas:
+        addi a3, a3, 1 # incrementando a3
+        j loop
+    somac:
+        addi a4, a4, 1 # incrementando a4
+        j loop
+    somav: 
+        addi a5, a5, 1 # incrementando a5
+        j loop
+   
+    end:
+    addi a0, s3, 0 #salva em a0 a resposa final
