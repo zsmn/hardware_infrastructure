@@ -1,0 +1,646 @@
+C:/Users/zsmn/Desktop/Projeto/Memoria64.sv {1 {vlog -work work -sv -stats=none C:/Users/zsmn/Desktop/Projeto/Memoria64.sv
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module Memoria64
+
+Top level modules:
+	Memoria64
+
+} {} {}} D:/Users/zsmn/Desktop/Projeto/ramOnChip32.v {1 {vlog -work work -stats=none D:/Users/zsmn/Desktop/Projeto/ramOnChip32.v
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module ramOnChip32
+
+Top level modules:
+	ramOnChip32
+
+} {} {}} C:/Users/zsmn/Desktop/Projeto/MUXB.sv {1 {vlog -work work -sv -stats=none C:/Users/zsmn/Desktop/Projeto/MUXB.sv
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module MUXB
+
+Top level modules:
+	MUXB
+
+} {} {}} C:/Users/pnc/Desktop/Projeto/regcausa.sv {1 {vlog -work work -sv -stats=none C:/Users/pnc/Desktop/Projeto/regcausa.sv
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module regcausa
+
+Top level modules:
+	regcausa
+
+} {} {}} D:/Users/zsmn/Desktop/Projeto/MUX4.sv {1 {vlog -work work -sv -stats=none D:/Users/zsmn/Desktop/Projeto/MUX4.sv
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module MUX4
+
+Top level modules:
+	MUX4
+
+} {} {}} C:/Users/vmmc2/Desktop/Projeto/MUXA.sv {1 {vlog -work work -sv -stats=none C:/Users/vmmc2/Desktop/Projeto/MUXA.sv
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module MUXA
+
+Top level modules:
+	MUXA
+
+} {} {}} C:/Users/pnc/Desktop/Projeto/ramOnChip64.v {1 {vlog -work work -stats=none C:/Users/pnc/Desktop/Projeto/ramOnChip64.v
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module ramOnChip64
+
+Top level modules:
+	ramOnChip64
+
+} {} {}} C:/Users/pnc/Desktop/Projeto/extend_sign.sv {1 {vlog -work work -sv -stats=none C:/Users/pnc/Desktop/Projeto/extend_sign.sv
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module extend_sign
+
+Top level modules:
+	extend_sign
+
+} {} {}} D:/Users/zsmn/Desktop/Projeto/Processor.sv {1 {vlog -work work -sv -stats=none D:/Users/zsmn/Desktop/Projeto/Processor.sv
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module Processor
+
+Top level modules:
+	Processor
+
+} {} {}} C:/Users/rjmr/Desktop/Projeto/Memoria32.sv {1 {vlog -work work -sv -stats=none C:/Users/rjmr/Desktop/Projeto/Memoria32.sv
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module Memoria32
+
+Top level modules:
+	Memoria32
+
+} {} {}} C:/Users/zsmn/Desktop/Projeto/simulacao32.sv {1 {vlog -work work -sv -stats=none C:/Users/zsmn/Desktop/Projeto/simulacao32.sv
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module simulacao32
+
+Top level modules:
+	simulacao32
+
+} {} {}} C:/Users/vmmc2/Desktop/Projeto/Deslocamento.sv {1 {vlog -work work -sv -stats=none C:/Users/vmmc2/Desktop/Projeto/Deslocamento.sv
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module Deslocamento
+
+Top level modules:
+	Deslocamento
+
+} {} {}} D:/Users/zsmn/Desktop/Projeto/control_sizeOUT.sv {1 {vlog -work work -sv -stats=none D:/Users/zsmn/Desktop/Projeto/control_sizeOUT.sv
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module control_sizeOUT
+
+Top level modules:
+	control_sizeOUT
+
+} {} {}} C:/Users/zsmn/Desktop/Projeto/ula64.vhd {1 {vcom -work work -2002 -explicit -stats=none C:/Users/zsmn/Desktop/Projeto/ula64.vhd
+Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package std_logic_arith
+-- Compiling entity Ula64
+-- Compiling architecture behavioral of Ula64
+
+} {} {}} D:/Users/zsmn/Desktop/Projeto/Memoria64.sv {1 {vlog -work work -sv -stats=none D:/Users/zsmn/Desktop/Projeto/Memoria64.sv
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module Memoria64
+
+Top level modules:
+	Memoria64
+
+} {} {}} C:/Users/vmmc2/Desktop/Projeto/extend_sign.sv {1 {vlog -work work -sv -stats=none C:/Users/vmmc2/Desktop/Projeto/extend_sign.sv
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module extend_sign
+
+Top level modules:
+	extend_sign
+
+} {} {}} C:/Users/rjmr/Desktop/Projeto/MUXA.sv {1 {vlog -work work -sv -stats=none C:/Users/rjmr/Desktop/Projeto/MUXA.sv
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module MUXA
+
+Top level modules:
+	MUXA
+
+} {} {}} D:/Users/zsmn/Desktop/Projeto/Deslocamento.sv {1 {vlog -work work -sv -stats=none D:/Users/zsmn/Desktop/Projeto/Deslocamento.sv
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module Deslocamento
+
+Top level modules:
+	Deslocamento
+
+} {} {}} C:/Users/pnc/Desktop/Projeto/Memoria32.sv {1 {vlog -work work -sv -stats=none C:/Users/pnc/Desktop/Projeto/Memoria32.sv
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module Memoria32
+
+Top level modules:
+	Memoria32
+
+} {} {}} C:/Users/rjmr/Desktop/Projeto/Deslocamento.sv {1 {vlog -work work -sv -stats=none C:/Users/rjmr/Desktop/Projeto/Deslocamento.sv
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module Deslocamento
+
+Top level modules:
+	Deslocamento
+
+} {} {}} C:/Users/pnc/Desktop/Projeto/ControlUnit.sv {1 {vlog -work work -sv -stats=none C:/Users/pnc/Desktop/Projeto/ControlUnit.sv
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module ControlUnit
+
+Top level modules:
+	ControlUnit
+
+} {} {}} C:/Users/zsmn/Desktop/Projeto/control_sizeOUT.sv {1 {vlog -work work -sv -stats=none C:/Users/zsmn/Desktop/Projeto/control_sizeOUT.sv
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module control_sizeOUT
+
+Top level modules:
+	control_sizeOUT
+
+} {} {}} C:/Users/zsmn/Desktop/Projeto/Instr_Reg_RISC_V.vhd {1 {vcom -work work -2002 -explicit -stats=none C:/Users/zsmn/Desktop/Projeto/Instr_Reg_RISC_V.vhd
+Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Compiling entity Instr_Reg_RISC_V
+-- Compiling architecture behavioral_arch of Instr_Reg_RISC_V
+
+} {} {}} C:/Users/rjmr/Desktop/Projeto/ramOnChip64.v {1 {vlog -work work -stats=none C:/Users/rjmr/Desktop/Projeto/ramOnChip64.v
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module ramOnChip64
+
+Top level modules:
+	ramOnChip64
+
+} {} {}} C:/Users/vmmc2/Desktop/Projeto/Memoria32.sv {1 {vlog -work work -sv -stats=none C:/Users/vmmc2/Desktop/Projeto/Memoria32.sv
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module Memoria32
+
+Top level modules:
+	Memoria32
+
+} {} {}} D:/Users/zsmn/Desktop/Projeto/MUX2.sv {1 {vlog -work work -sv -stats=none D:/Users/zsmn/Desktop/Projeto/MUX2.sv
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module MUX2
+
+Top level modules:
+	MUX2
+
+} {} {}} C:/Users/vmmc2/Desktop/Projeto/ControlUnit.sv {1 {vlog -work work -sv -stats=none C:/Users/vmmc2/Desktop/Projeto/ControlUnit.sv
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module ControlUnit
+
+Top level modules:
+	ControlUnit
+
+} {} {}} C:/Users/vmmc2/Desktop/Projeto/bancoReg.sv {1 {vlog -work work -sv -stats=none C:/Users/vmmc2/Desktop/Projeto/bancoReg.sv
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module bancoReg
+
+Top level modules:
+	bancoReg
+
+} {} {}} C:/Users/rjmr/Desktop/Projeto/simulacao32.sv {1 {vlog -work work -sv -stats=none C:/Users/rjmr/Desktop/Projeto/simulacao32.sv
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module simulacao32
+
+Top level modules:
+	simulacao32
+
+} {} {}} C:/Users/pnc/Desktop/Projeto/ula64.vhd {1 {vcom -work work -2002 -explicit -stats=none C:/Users/pnc/Desktop/Projeto/ula64.vhd
+Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package std_logic_arith
+-- Compiling entity Ula64
+-- Compiling architecture behavioral of Ula64
+
+} {} {}} C:/Users/zsmn/Desktop/Projeto/extend_sign.sv {1 {vlog -work work -sv -stats=none C:/Users/zsmn/Desktop/Projeto/extend_sign.sv
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module extend_sign
+
+Top level modules:
+	extend_sign
+
+} {} {}} C:/Users/zsmn/Desktop/Projeto/bancoReg.sv {1 {vlog -work work -sv -stats=none C:/Users/zsmn/Desktop/Projeto/bancoReg.sv
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module bancoReg
+
+Top level modules:
+	bancoReg
+
+} {} {}} D:/Users/zsmn/Desktop/Projeto/suber.sv {1 {vlog -work work -sv -stats=none D:/Users/zsmn/Desktop/Projeto/suber.sv
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module suber
+
+Top level modules:
+	suber
+
+} {} {}} D:/Users/zsmn/Desktop/Projeto/size_dadoIN.sv {1 {vlog -work work -sv -stats=none D:/Users/zsmn/Desktop/Projeto/size_dadoIN.sv
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module size_dadoIN
+
+Top level modules:
+	size_dadoIN
+
+} {} {}} D:/Users/zsmn/Desktop/Projeto/bancoReg.sv {1 {vlog -work work -sv -stats=none D:/Users/zsmn/Desktop/Projeto/bancoReg.sv
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module bancoReg
+
+Top level modules:
+	bancoReg
+
+} {} {}} C:/Users/rjmr/Desktop/Projeto/Processor.sv {1 {vlog -work work -sv -stats=none C:/Users/rjmr/Desktop/Projeto/Processor.sv
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module Processor
+
+Top level modules:
+	Processor
+
+} {} {}} D:/Users/zsmn/Desktop/Projeto/Instr_Reg_RISC_V.vhd {1 {vcom -work work -2002 -explicit -stats=none D:/Users/zsmn/Desktop/Projeto/Instr_Reg_RISC_V.vhd
+Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Compiling entity Instr_Reg_RISC_V
+-- Compiling architecture behavioral_arch of Instr_Reg_RISC_V
+
+} {} {}} C:/Users/rjmr/Desktop/Projeto/bancoReg.sv {1 {vlog -work work -sv -stats=none C:/Users/rjmr/Desktop/Projeto/bancoReg.sv
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module bancoReg
+
+Top level modules:
+	bancoReg
+
+} {} {}} C:/Users/pnc/Desktop/Projeto/ramOnChip32.v {1 {vlog -work work -stats=none C:/Users/pnc/Desktop/Projeto/ramOnChip32.v
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module ramOnChip32
+
+Top level modules:
+	ramOnChip32
+
+} {} {}} C:/Users/rjmr/Desktop/Projeto/Memoria64.sv {1 {vlog -work work -sv -stats=none C:/Users/rjmr/Desktop/Projeto/Memoria64.sv
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module Memoria64
+
+Top level modules:
+	Memoria64
+
+} {} {}} C:/Users/zsmn/Desktop/Projeto/ramOnChip64.v {1 {vlog -work work -stats=none C:/Users/zsmn/Desktop/Projeto/ramOnChip64.v
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module ramOnChip64
+
+Top level modules:
+	ramOnChip64
+
+} {} {}} C:/Users/rjmr/Desktop/Projeto/ula64.vhd {1 {vcom -work work -2002 -explicit -stats=none C:/Users/rjmr/Desktop/Projeto/ula64.vhd
+Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package std_logic_arith
+-- Compiling entity Ula64
+-- Compiling architecture behavioral of Ula64
+
+} {} {}} C:/Users/zsmn/Desktop/Projeto/ControlUnit.sv {1 {vlog -work work -sv -stats=none C:/Users/zsmn/Desktop/Projeto/ControlUnit.sv
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module ControlUnit
+
+Top level modules:
+	ControlUnit
+
+} {} {}} C:/Users/pnc/Desktop/Projeto/Processor.sv {1 {vlog -work work -sv -stats=none C:/Users/pnc/Desktop/Projeto/Processor.sv
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module Processor
+
+Top level modules:
+	Processor
+
+} {} {}} C:/Users/vmmc2/Desktop/Projeto/MUXB.sv {1 {vlog -work work -sv -stats=none C:/Users/vmmc2/Desktop/Projeto/MUXB.sv
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module MUXB
+
+Top level modules:
+	MUXB
+
+} {} {}} C:/Users/vmmc2/Desktop/Projeto/register.sv {1 {vlog -work work -sv -stats=none C:/Users/vmmc2/Desktop/Projeto/register.sv
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module register
+
+Top level modules:
+	register
+
+} {} {}} C:/Users/rjmr/Desktop/Projeto/extend_sign.sv {1 {vlog -work work -sv -stats=none C:/Users/rjmr/Desktop/Projeto/extend_sign.sv
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module extend_sign
+
+Top level modules:
+	extend_sign
+
+} {} {}} C:/Users/pnc/Desktop/Projeto/control_sizeOUT.sv {1 {vlog -work work -sv -stats=none C:/Users/pnc/Desktop/Projeto/control_sizeOUT.sv
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module control_sizeOUT
+
+Top level modules:
+	control_sizeOUT
+
+} {} {}} D:/Users/zsmn/Desktop/Projeto/simulacao32.sv {1 {vlog -work work -sv -stats=none D:/Users/zsmn/Desktop/Projeto/simulacao32.sv
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module simulacao32
+
+Top level modules:
+	simulacao32
+
+} {} {}} C:/Users/pnc/Desktop/Projeto/MUXA.sv {1 {vlog -work work -sv -stats=none C:/Users/pnc/Desktop/Projeto/MUXA.sv
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module MUXA
+
+Top level modules:
+	MUXA
+
+} {} {}} C:/Users/zsmn/Desktop/Projeto/register.sv {1 {vlog -work work -sv -stats=none C:/Users/zsmn/Desktop/Projeto/register.sv
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module register
+
+Top level modules:
+	register
+
+} {} {}} C:/Users/pnc/Desktop/Projeto/Memoria64.sv {1 {vlog -work work -sv -stats=none C:/Users/pnc/Desktop/Projeto/Memoria64.sv
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module Memoria64
+
+Top level modules:
+	Memoria64
+
+} {} {}} C:/Users/zsmn/Desktop/Projeto/MUX4.sv {1 {vlog -work work -sv -stats=none C:/Users/zsmn/Desktop/Projeto/MUX4.sv
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module MUX4
+
+Top level modules:
+	MUX4
+
+} {} {}} D:/Users/zsmn/Desktop/Projeto/register.sv {1 {vlog -work work -sv -stats=none D:/Users/zsmn/Desktop/Projeto/register.sv
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module register
+
+Top level modules:
+	register
+
+} {} {}} C:/Users/rjmr/Desktop/Projeto/ramOnChip32.v {1 {vlog -work work -stats=none C:/Users/rjmr/Desktop/Projeto/ramOnChip32.v
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module ramOnChip32
+
+Top level modules:
+	ramOnChip32
+
+} {} {}} C:/Users/rjmr/Desktop/Projeto/MUXB.sv {1 {vlog -work work -sv -stats=none C:/Users/rjmr/Desktop/Projeto/MUXB.sv
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module MUXB
+
+Top level modules:
+	MUXB
+
+} {} {}} C:/Users/pnc/Desktop/Projeto/Deslocamento.sv {1 {vlog -work work -sv -stats=none C:/Users/pnc/Desktop/Projeto/Deslocamento.sv
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module Deslocamento
+
+Top level modules:
+	Deslocamento
+
+} {} {}} C:/Users/vmmc2/Desktop/Projeto/control_sizeOUT.sv {1 {vlog -work work -sv -stats=none C:/Users/vmmc2/Desktop/Projeto/control_sizeOUT.sv
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module control_sizeOUT
+
+Top level modules:
+	control_sizeOUT
+
+} {} {}} C:/Users/rjmr/Desktop/Projeto/register.sv {1 {vlog -work work -sv -stats=none C:/Users/rjmr/Desktop/Projeto/register.sv
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module register
+
+Top level modules:
+	register
+
+} {} {}} C:/Users/vmmc2/Desktop/Projeto/Memoria64.sv {1 {vlog -work work -sv -stats=none C:/Users/vmmc2/Desktop/Projeto/Memoria64.sv
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module Memoria64
+
+Top level modules:
+	Memoria64
+
+} {} {}} C:/Users/zsmn/Desktop/Projeto/regcausa.sv {1 {vlog -work work -sv -stats=none C:/Users/zsmn/Desktop/Projeto/regcausa.sv
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module regcausa
+
+Top level modules:
+	regcausa
+
+} {} {}} C:/Users/zsmn/Desktop/Projeto/MUXA.sv {1 {vlog -work work -sv -stats=none C:/Users/zsmn/Desktop/Projeto/MUXA.sv
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module MUXA
+
+Top level modules:
+	MUXA
+
+} {} {}} D:/Users/zsmn/Desktop/Projeto/regcausa.sv {1 {vlog -work work -sv -stats=none D:/Users/zsmn/Desktop/Projeto/regcausa.sv
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module regcausa
+
+Top level modules:
+	regcausa
+
+} {} {}} C:/Users/rjmr/Desktop/Projeto/ControlUnit.sv {1 {vlog -work work -sv -stats=none C:/Users/rjmr/Desktop/Projeto/ControlUnit.sv
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module ControlUnit
+
+Top level modules:
+	ControlUnit
+
+} {} {}} C:/Users/vmmc2/Desktop/Projeto/ramOnChip64.v {1 {vlog -work work -stats=none C:/Users/vmmc2/Desktop/Projeto/ramOnChip64.v
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module ramOnChip64
+
+Top level modules:
+	ramOnChip64
+
+} {} {}} C:/Users/zsmn/Desktop/Projeto/Deslocamento.sv {1 {vlog -work work -sv -stats=none C:/Users/zsmn/Desktop/Projeto/Deslocamento.sv
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module Deslocamento
+
+Top level modules:
+	Deslocamento
+
+} {} {}} C:/Users/rjmr/Desktop/Projeto/Instr_Reg_RISC_V.vhd {1 {vcom -work work -2002 -explicit -stats=none C:/Users/rjmr/Desktop/Projeto/Instr_Reg_RISC_V.vhd
+Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Compiling entity Instr_Reg_RISC_V
+-- Compiling architecture behavioral_arch of Instr_Reg_RISC_V
+
+} {} {}} C:/Users/zsmn/Desktop/Projeto/Memoria32.sv {1 {vlog -work work -sv -stats=none C:/Users/zsmn/Desktop/Projeto/Memoria32.sv
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module Memoria32
+
+Top level modules:
+	Memoria32
+
+} {} {}} C:/Users/zsmn/Desktop/Projeto/suber.sv {1 {vlog -work work -sv -stats=none C:/Users/zsmn/Desktop/Projeto/suber.sv
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module suber
+
+Top level modules:
+	suber
+
+} {} {}} D:/Users/zsmn/Desktop/Projeto/ramOnChip64.v {1 {vlog -work work -stats=none D:/Users/zsmn/Desktop/Projeto/ramOnChip64.v
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module ramOnChip64
+
+Top level modules:
+	ramOnChip64
+
+} {} {}} D:/Users/zsmn/Desktop/Projeto/extend_sign.sv {1 {vlog -work work -sv -stats=none D:/Users/zsmn/Desktop/Projeto/extend_sign.sv
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module extend_sign
+
+Top level modules:
+	extend_sign
+
+} {} {}} C:/Users/pnc/Desktop/Projeto/suber.sv {1 {vlog -work work -sv -stats=none C:/Users/pnc/Desktop/Projeto/suber.sv
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module suber
+
+Top level modules:
+	suber
+
+} {} {}} C:/Users/pnc/Desktop/Projeto/bancoReg.sv {1 {vlog -work work -sv -stats=none C:/Users/pnc/Desktop/Projeto/bancoReg.sv
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module bancoReg
+
+Top level modules:
+	bancoReg
+
+} {} {}} C:/Users/pnc/Desktop/Projeto/size_dadoIN.sv {1 {vlog -work work -sv -stats=none C:/Users/pnc/Desktop/Projeto/size_dadoIN.sv
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module size_dadoIN
+
+Top level modules:
+	size_dadoIN
+
+} {} {}} C:/Users/zsmn/Desktop/Projeto/ramOnChip32.v {1 {vlog -work work -stats=none C:/Users/zsmn/Desktop/Projeto/ramOnChip32.v
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module ramOnChip32
+
+Top level modules:
+	ramOnChip32
+
+} {} {}} C:/Users/zsmn/Desktop/Projeto/MUX2.sv {1 {vlog -work work -sv -stats=none C:/Users/zsmn/Desktop/Projeto/MUX2.sv
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module MUX2
+
+Top level modules:
+	MUX2
+
+} {} {}} C:/Users/pnc/Desktop/Projeto/Instr_Reg_RISC_V.vhd {1 {vcom -work work -2002 -explicit -stats=none C:/Users/pnc/Desktop/Projeto/Instr_Reg_RISC_V.vhd
+Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Compiling entity Instr_Reg_RISC_V
+-- Compiling architecture behavioral_arch of Instr_Reg_RISC_V
+
+} {} {}} C:/Users/vmmc2/Desktop/Projeto/size_dadoIN.sv {1 {vlog -work work -sv -stats=none C:/Users/vmmc2/Desktop/Projeto/size_dadoIN.sv
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module size_dadoIN
+
+Top level modules:
+	size_dadoIN
+
+} {} {}} D:/Users/zsmn/Desktop/Projeto/Memoria32.sv {1 {vlog -work work -sv -stats=none D:/Users/zsmn/Desktop/Projeto/Memoria32.sv
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module Memoria32
+
+Top level modules:
+	Memoria32
+
+} {} {}} C:/Users/vmmc2/Desktop/Projeto/Instr_Reg_RISC_V.vhd {1 {vcom -work work -2002 -explicit -stats=none C:/Users/vmmc2/Desktop/Projeto/Instr_Reg_RISC_V.vhd
+Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Compiling entity Instr_Reg_RISC_V
+-- Compiling architecture behavioral_arch of Instr_Reg_RISC_V
+
+} {} {}} C:/Users/vmmc2/Desktop/Projeto/ula64.vhd {1 {vcom -work work -2002 -explicit -stats=none C:/Users/vmmc2/Desktop/Projeto/ula64.vhd
+Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package std_logic_arith
+-- Compiling entity Ula64
+-- Compiling architecture behavioral of Ula64
+
+} {} {}} D:/Users/zsmn/Desktop/Projeto/ControlUnit.sv {1 {vlog -work work -sv -stats=none {D:\Users\zsmn\Desktop\Projeto\ControlUnit.sv}
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module ControlUnit
+
+Top level modules:
+	ControlUnit
+
+} {} {}} C:/Users/pnc/Desktop/Projeto/simulacao32.sv {1 {vlog -work work -sv -stats=none C:/Users/pnc/Desktop/Projeto/simulacao32.sv
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module simulacao32
+
+Top level modules:
+	simulacao32
+
+} {} {}} C:/Users/pnc/Desktop/Projeto/MUXB.sv {1 {vlog -work work -sv -stats=none C:/Users/pnc/Desktop/Projeto/MUXB.sv
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module MUXB
+
+Top level modules:
+	MUXB
+
+} {} {}} D:/Users/zsmn/Desktop/Projeto/ula64.vhd {1 {vcom -work work -2002 -explicit -stats=none D:/Users/zsmn/Desktop/Projeto/ula64.vhd
+Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package std_logic_arith
+-- Compiling entity Ula64
+-- Compiling architecture behavioral of Ula64
+
+} {} {}} C:/Users/pnc/Desktop/Projeto/register.sv {1 {vlog -work work -sv -stats=none C:/Users/pnc/Desktop/Projeto/register.sv
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module register
+
+Top level modules:
+	register
+
+} {} {}} C:/Users/zsmn/Desktop/Projeto/Processor.sv {1 {vlog -work work -sv -stats=none C:/Users/zsmn/Desktop/Projeto/Processor.sv
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module Processor
+
+Top level modules:
+	Processor
+
+} {} {}} C:/Users/vmmc2/Desktop/Projeto/ramOnChip32.v {1 {vlog -work work -stats=none C:/Users/vmmc2/Desktop/Projeto/ramOnChip32.v
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module ramOnChip32
+
+Top level modules:
+	ramOnChip32
+
+} {} {}} C:/Users/vmmc2/Desktop/Projeto/simulacao32.sv {1 {vlog -work work -sv -stats=none C:/Users/vmmc2/Desktop/Projeto/simulacao32.sv
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module simulacao32
+
+Top level modules:
+	simulacao32
+
+} {} {}} C:/Users/zsmn/Desktop/Projeto/size_dadoIN.sv {1 {vlog -work work -sv -stats=none C:/Users/zsmn/Desktop/Projeto/size_dadoIN.sv
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module size_dadoIN
+
+Top level modules:
+	size_dadoIN
+
+} {} {}}

@@ -1,0 +1,1027 @@
+module ControlUnit(
+    input logic Clk, Reset, AluZero, AluEG, AluLT,AluO,
+    output logic PCwrite, ImemWR, LoadIr, LoadRegA, LoadRegB, LoadOut, WriteReg, DMemControl, LoadRegC, PCWriteCond,
+    output logic [1:0]AluSrcB, ShiftControl, AluSrcA,
+    output logic [2:0]ALUFct,
+    input logic[31:0] instruction,
+    output logic [5:0]Nshift,
+    output logic FlagComp, PCSrc, ResetRegA, ShiftScr,
+    output logic [1:0] MemTOreg,
+    output logic [63:0] FlagRd
+);
+ 
+enum logic[5:0]{InitState, SendEnd, AttEnd, Decodificador,
+TypeI, TypeI2, TypeR, ADD, SUB, LType, LType2, LType3, RegSave, LUI,
+TypeSB, BEQ, BNE, BLT, BGE, SD, SD2, SD3, SD4, EX, RegSaveSlt, SLT, NOP,SLTI,
+SLLI, JALR, JAL, SRAI, SRLI, SLT2, AND, JALS, JAL3, BREAK}NextStage, Stage, instructions;
+ 
+always_ff@(posedge Clk or posedge Reset) begin
+    if(Reset)
+        Stage <= InitState;
+    else
+        Stage <= NextStage;
+end
+ 
+always_comb begin
+    case(Stage)
+    InitState:begin
+        ShiftScr = 1'b1;
+        PCwrite = 1'b0;
+        AluSrcA = 2'b00;
+        ImemWR = 1'b0;
+        AluSrcB = 2'b00;
+        ALUFct = 3'b000;
+        LoadIr = 1'b0;
+        LoadRegA = 1'b0;
+        LoadRegB = 1'b0;
+        LoadOut = 1'b0;
+        WriteReg =  1'b0;
+        DMemControl = 1'b0;
+        LoadRegC = 1'b0;
+        PCWriteCond = 1'b0;
+        ShiftControl = 2'b00;
+        FlagComp = 1'b0;
+        PCSrc = 1'b0;
+        MemTOreg = 2'b00;
+        ResetRegA = 1'b0;
+        Nshift = 6'b000000;
+        FlagRd = 64'd0;
+        NextStage = SendEnd;
+    end
+    SendEnd: begin
+        //pego o endere�o de pc para ler da memoriaa instru��o
+        //fa�o pc +4
+        ShiftScr = 1'b1;
+        PCwrite = 1'b0;
+        AluSrcA = 2'b00;
+        ImemWR = 1'b0;
+        AluSrcB = 2'b01;
+        ALUFct = 3'b001;
+        LoadIr = 1'b0;
+        LoadRegA = 1'b0;
+        LoadRegB = 1'b0;
+        LoadOut = 1'b0;
+        WriteReg =  1'b0;
+        DMemControl = 1'b0;
+        LoadRegC = 1'b0;
+        PCWriteCond = 1'b0;
+        ShiftControl = 2'b00;
+        FlagComp = 1'b0;
+        PCSrc = 1'b0;
+        MemTOreg = 2'b00;
+        ResetRegA = 1'b0;
+        NextStage = AttEnd;
+        FlagRd = 64'd0;
+        Nshift = 6'b000000;
+    end
+    AttEnd: begin
+        //atualizo pc com pc+4
+        //escrevo o registrador de instru��o com a instru��o atual
+        PCwrite = 1'b1;
+        ShiftScr = 1'b1;
+        AluSrcA = 2'b00;
+        ImemWR = 1'b0;
+        AluSrcB = 2'b01;
+        ALUFct = 3'b001;
+        LoadIr = 1'b1;
+        LoadRegA = 1'b0;
+        LoadRegB = 1'b0;
+        LoadOut = 1'b0;
+        WriteReg =  1'b0;
+        DMemControl = 1'b0;
+        LoadRegC = 1'b0;
+        PCWriteCond = 1'b0;
+        ShiftControl = 2'b00;
+        FlagComp = 1'b0;
+        PCSrc = 1'b0;
+        MemTOreg = 2'b00;
+        ResetRegA = 1'b0;
+        FlagRd = 64'd0;
+        NextStage = Decodificador;
+        Nshift = 6'b000000;
+    end
+    Decodificador: begin
+        PCwrite = 1'b0;
+        ShiftScr = 1'b1;
+        AluSrcA = 2'b00;
+        ImemWR = 1'b0;
+        AluSrcB = 2'b00;
+        ALUFct = 3'b000;
+        LoadIr = 1'b0;
+        LoadRegA = 1'b0;
+        LoadRegB = 1'b0;
+        LoadOut = 1'b0;
+        WriteReg =  1'b0;
+        DMemControl = 1'b0;
+        LoadRegC = 1'b0;
+        PCWriteCond = 1'b0;
+        ShiftControl = 2'b00;
+        FlagComp = 1'b0;
+        PCSrc = 1'b0;
+        MemTOreg = 2'b00;
+        ResetRegA = 1'b0;
+        Nshift = 6'b000000;
+        FlagRd = 64'd0;
+ 
+        case(instruction[6:0])
+            7'b0110011:begin //esse eh o caso do add e do sub, tem que usar o func7 para saber de fato
+            NextStage = TypeR;
+            case(instruction[31:25]) //checando o func7
+                7'b0000000:begin
+                    case(instruction[9:7]) //checando o func3
+                        3'b000:begin
+                            instructions = ADD; //add
+                        end
+                        3'b111:begin
+                            instructions = AND; //and logico
+                        end
+                        3'b010:begin
+                            instructions = SLT;//slt (set if less than)
+                        end
+                    endcase
+                end
+                7'b0100000:begin //sub
+                    instructions = SUB;
+                end
+            endcase
+ 
+            end
+            7'b0010011: begin
+                NextStage = TypeI;
+                case(instruction[9:7])
+                    3'b000:begin
+                        case(instruction[31:20])
+                            12'b000000000000:begin //nop
+                                NextStage = NOP;
+                            end
+                            default
+                                instructions = RegSave; //addi
+                        endcase
+                    end
+                    3'b010:begin
+                    instructions = SLTI; //slti
+                    end
+                    3'b001:begin
+                    instructions = SLLI; //slli
+                    end
+                    3'b101:begin
+                        case(instruction[31:26])
+                            6'b000000:begin
+                                instructions = SRLI; // srli
+                            end
+                            6'b010000:begin
+                                instructions = SRAI; // srai
+                            end
+                        endcase
+                    end
+                endcase
+            end
+            7'b0000011:begin //ld
+                NextStage = TypeI;
+                instructions = LType;
+            end
+            7'b0100011:begin //sd
+                NextStage = SD;
+            end
+            7'b1100011:begin //beq
+                NextStage = TypeSB;
+                instructions = BEQ;
+            end
+            7'b1100111:begin
+                NextStage = TypeSB;
+                case(instruction[9:7]) //fazendo a decodificação por meio do func3
+                    3'b000:begin
+                      NextStage = JALS; //opcode eh o mesmo mas pertence a uma classe
+                      //de instrucoes diferente SB != I
+                      instructions = JALR; //jalr
+                    end
+                    3'b001:begin
+                        instructions = BNE; //bne -- branch if not equal
+                    end
+                    3'b101:begin
+                        instructions = BGE; //bge -- branch if greater than
+                    end
+                    3'b100:begin
+                        instructions = BLT; //blt -- branch if less than
+                    end
+                endcase
+            end
+            7'b0110111:begin //lui
+                NextStage = LUI;
+            end
+            7'b1101111:begin //jal
+                NextStage = JALS;
+                instructions = JAL;
+            end
+            7'b1110011:begin //break
+                NextStage = BREAK;
+            end
+        endcase      
+    end
+    /* a partir daqui se der merda, se lembrar de resetar o que n ta usando
+   
+                    ATENÇÃO!!!!!!!!!!!!!!!
+                    'B'uffer 'C'om 'T'rash
+ 
+    */
+    BREAK: begin    
+        PCwrite = 1'b0;
+        ShiftScr = 1'b1;
+        AluSrcA = 2'b00;
+        ImemWR = 1'b0;
+        AluSrcB = 2'b00;
+        ALUFct = 3'b000;
+        LoadIr = 1'b0;
+        LoadRegA = 1'b0;
+        LoadRegB = 1'b0;
+        LoadOut = 1'b0;
+        WriteReg =  1'b0;
+        DMemControl = 1'b0;
+        LoadRegC = 1'b0;
+        PCWriteCond = 1'b0;
+        ShiftControl = 2'b00;
+        FlagComp = 1'b0;
+        PCSrc = 1'b0;
+        MemTOreg = 2'b00;
+        ResetRegA = 1'b0;
+        Nshift = 6'b000000;
+        FlagRd = 64'd0;
+        NextStage = BREAK;
+    end
+    NOP: begin    
+        PCwrite = 1'b0;
+        ShiftScr = 1'b1;
+        AluSrcA = 2'b00;
+        ImemWR = 1'b0;
+        AluSrcB = 2'b00;
+        ALUFct = 3'b000;
+        LoadIr = 1'b0;
+        LoadRegA = 1'b0;
+        LoadRegB = 1'b0;
+        LoadOut = 1'b0;
+        WriteReg =  1'b0;
+        DMemControl = 1'b0;
+        LoadRegC = 1'b0;
+        PCWriteCond = 1'b0;
+        ShiftControl = 2'b00;
+        FlagComp = 1'b0;
+        PCSrc = 1'b0;
+        MemTOreg = 2'b00;
+        ResetRegA = 1'b0;
+        Nshift = 6'b000000;
+        FlagRd = 64'd0;
+        NextStage = SendEnd;
+    end    
+    TypeI: begin
+        Nshift = 6'b000000;
+        ShiftScr = 1'b1;
+        PCwrite = 1'b0;
+        AluSrcA = 2'b00;
+        ImemWR = 1'b0;
+        AluSrcB = 2'b00;
+        ALUFct = 3'b000;
+        LoadIr = 1'b0;
+        LoadRegA = 1'b1;
+        LoadRegB = 1'b0;
+        LoadOut = 1'b0;
+        WriteReg =  1'b0;
+        DMemControl = 1'b0;
+        LoadRegC = 1'b0;
+        PCWriteCond = 1'b0;
+        ShiftControl = 2'b00;
+        FlagComp = 1'b0;
+        PCSrc = 1'b0;
+        MemTOreg = 2'b00;
+        ResetRegA = 1'b0;
+        FlagRd = 64'd0;
+        NextStage = TypeI2;
+    end
+    TypeI2: begin
+        Nshift = 6'b000000;
+        ShiftScr = 1'b1;
+        PCwrite = 1'b0;
+        AluSrcA = 2'b01;
+        ImemWR = 1'b0;
+        AluSrcB = 2'b10;
+        ALUFct = 3'b001;
+        LoadIr = 1'b0;
+        LoadRegA = 1'b0;
+        LoadRegB = 1'b0;
+        LoadOut = 1'b1;
+        WriteReg =  1'b0;
+        DMemControl = 1'b0;
+        LoadRegC = 1'b0;
+        PCWriteCond = 1'b0;
+        ShiftControl = 2'b00;
+        FlagComp = 1'b0;
+        PCSrc = 1'b0;
+        MemTOreg = 2'b00;
+        ResetRegA = 1'b0;
+        FlagRd = 64'd0;
+        NextStage = instructions;
+    end
+    SLLI: begin //Nao testado
+        Nshift = instruction[25:20];
+        ShiftScr = 1'b0;
+        PCwrite = 1'b0;
+        AluSrcA = 2'b10;
+        ImemWR = 1'b0;
+        AluSrcB = 2'b11;
+        ALUFct = 3'b001;
+        LoadIr = 1'b0;
+        LoadRegA = 1'b0;
+        LoadRegB = 1'b0;
+        LoadOut = 1'b1;
+        WriteReg =  1'b0;
+        DMemControl = 1'b0;
+        LoadRegC = 1'b0;
+        PCWriteCond = 1'b0;
+        ShiftControl = 2'b01;
+        FlagComp = 1'b0;
+        PCSrc = 1'b0;
+        MemTOreg = 2'b00;
+        ResetRegA = 1'b0;
+        FlagRd = 64'd0;
+        NextStage = RegSave;
+    end
+    SRAI: begin //Nao testado
+        Nshift = instruction[25:20];
+        ShiftScr = 1'b0;
+        PCwrite = 1'b0;
+        AluSrcA = 2'b10;
+        ImemWR = 1'b0;
+        AluSrcB = 2'b11;
+        ALUFct = 3'b001;
+        LoadIr = 1'b0;
+        LoadRegA = 1'b0;
+        LoadRegB = 1'b0;
+        LoadOut = 1'b1;
+        WriteReg =  1'b0;
+        DMemControl = 1'b0;
+        LoadRegC = 1'b0;
+        PCWriteCond = 1'b0;
+        ShiftControl = 2'b10;
+        FlagComp = 1'b0;
+        PCSrc = 1'b0;
+        MemTOreg = 2'b00;
+        ResetRegA = 1'b0;
+        FlagRd = 64'd0;
+        NextStage = RegSave;
+    end
+    SRLI: begin //Nao testado
+        Nshift = instruction[25:20];
+        ShiftScr = 1'b0;
+        PCwrite = 1'b0;
+        AluSrcA = 2'b10;
+        ImemWR = 1'b0;
+        AluSrcB = 2'b11;
+        ALUFct = 3'b001;
+        LoadIr = 1'b0;
+        LoadRegA = 1'b0;
+        LoadRegB = 1'b0;
+        LoadOut = 1'b1;
+        WriteReg =  1'b0;
+        DMemControl = 1'b0;
+        LoadRegC = 1'b0;
+        PCWriteCond = 1'b0;
+        ShiftControl = 2'b00;
+        FlagComp = 1'b0;
+        PCSrc = 1'b0;
+        MemTOreg = 2'b00;
+        ResetRegA = 1'b0;
+        FlagRd = 64'd0;
+        NextStage = RegSave;
+    end
+    SLTI: begin //Nao testado
+        Nshift = 6'b000000;
+        ShiftScr = 1'b0;
+        PCwrite = 1'b0;
+        AluSrcA = 2'b01;
+        ImemWR = 1'b0;
+        AluSrcB = 2'b10;
+        ALUFct = 3'b111;
+        LoadIr = 1'b0;
+        LoadRegA = 1'b0;
+        LoadRegB = 1'b0;
+        LoadOut = 1'b1;
+        WriteReg =  1'b0;
+        DMemControl = 1'b0;
+        LoadRegC = 1'b0;
+        PCWriteCond = 1'b0;
+        ShiftControl = 2'b00;
+        FlagComp = 1'b0;
+        PCSrc = 1'b0;
+        MemTOreg = 2'b00;
+        ResetRegA = 1'b0;
+        FlagRd = 64'd0;
+        NextStage = SLT2;
+    end
+    SLT: begin //Nao testado
+        Nshift = 6'b000000;
+        ShiftScr = 1'b0;
+        PCwrite = 1'b0;
+        AluSrcA = 2'b01;
+        ImemWR = 1'b0;
+        AluSrcB = 2'b00;
+        ALUFct = 3'b111;
+        LoadIr = 1'b0;
+        LoadRegA = 1'b0;
+        LoadRegB = 1'b0;
+        LoadOut = 1'b1;
+        WriteReg =  1'b0;
+        DMemControl = 1'b0;
+        LoadRegC = 1'b0;
+        PCWriteCond = 1'b0;
+        ShiftControl = 2'b00;
+        FlagComp = 1'b0;
+        PCSrc = 1'b0;
+        MemTOreg = 2'b00;
+        ResetRegA = 1'b0;
+        FlagRd = 64'd0;
+        NextStage = SLT2;
+    SLT2: begin //Nao testado
+        Nshift = 6'b000000;
+        ShiftScr = 1'b0;
+        PCwrite = 1'b0;
+        AluSrcA = 2'b01;
+        ImemWR = 1'b0;
+        AluSrcB = 2'b10;
+        ALUFct = 3'b111;
+        LoadIr = 1'b0;
+        LoadRegA = 1'b0;
+        LoadRegB = 1'b0;
+        LoadOut = 1'b1;
+        WriteReg =  1'b1;
+        DMemControl = 1'b0;
+        LoadRegC = 1'b0;
+        PCWriteCond = 1'b0;
+        ShiftControl = 2'b00;
+        FlagComp = 1'b0;
+        PCSrc = 1'b0;
+        MemTOreg = 2'b11;
+        ResetRegA = 1'b0;
+ 
+        if(AluLT == 1'b1)begin
+            FlagRd = 64'd1;
+        end
+        else begin
+            FlagRd = 64'd0;
+        end
+       
+        NextStage = RegSaveSlt;
+    end
+    RegSaveSlt: begin //Nao testado
+        Nshift = 6'b000000;
+        ShiftScr = 1'b0;
+        PCwrite = 1'b0;
+        AluSrcA = 2'b01;
+        ImemWR = 1'b0;
+        AluSrcB = 2'b10;
+        ALUFct = 3'b111;
+        LoadIr = 1'b0;
+        LoadRegA = 1'b0;
+        LoadRegB = 1'b0;
+        LoadOut = 1'b1;
+        WriteReg =  1'b1;
+        DMemControl = 1'b0;
+        LoadRegC = 1'b0;
+        PCWriteCond = 1'b0;
+        ShiftControl = 2'b00;
+        FlagComp = 1'b0;
+        PCSrc = 1'b0;
+        MemTOreg = 2'b11;
+        ResetRegA = 1'b0;
+        FlagRd = 64'd0;
+        NextStage = SendEnd;
+    end
+    LType: begin
+        Nshift = 6'b000000;
+        PCwrite = 1'b0;
+        ShiftScr = 1'b1;
+        AluSrcA = 2'b01;
+        ImemWR = 1'b0;
+        AluSrcB = 2'b00;
+        ALUFct = 3'b001;
+        LoadIr = 1'b0;
+        LoadRegA = 1'b0;
+        LoadRegB = 1'b0;
+        LoadOut = 1'b0;
+        WriteReg =  1'b0;
+        DMemControl = 1'b0;
+        LoadRegC = 1'b0;
+        PCWriteCond = 1'b0;
+        ShiftControl = 2'b00;
+        FlagComp = 1'b0;
+        PCSrc = 1'b0;
+        MemTOreg = 2'b01;
+        ResetRegA = 1'b0;
+        FlagRd = 64'd0;
+        NextStage = LType2;
+    end
+    LType2: begin
+        Nshift = 6'b000000;
+        ShiftScr = 1'b1;
+        PCwrite = 1'b0;
+        AluSrcA = 2'b01;
+        ImemWR = 1'b0;
+        AluSrcB = 2'b00;
+        ALUFct = 3'b001;
+        LoadIr = 1'b0;
+        LoadRegA = 1'b0;
+        LoadRegB = 1'b0;
+        LoadOut = 1'b0;
+        WriteReg =  1'b0;
+        DMemControl = 1'b0;
+        LoadRegC = 1'b1;
+        PCWriteCond = 1'b0;
+        ShiftControl = 2'b00;
+        FlagComp = 1'b0;
+        PCSrc = 1'b0;
+        MemTOreg = 2'b01;
+        ResetRegA = 1'b0;
+        FlagRd = 64'd0;
+        NextStage = LType3;
+    end
+    LType3: begin
+        Nshift = 6'b000000;
+        ShiftScr = 1'b1;
+        PCwrite = 1'b0;
+        AluSrcA = 2'b00;
+        ImemWR = 1'b0;
+        AluSrcB = 2'b00;
+        ALUFct = 3'b000;
+        LoadIr = 1'b0;
+        LoadRegA = 1'b0;
+        LoadRegB = 1'b0;
+        LoadOut = 1'b0;
+        WriteReg =  1'b1;
+        DMemControl = 1'b0;
+        LoadRegC = 1'b0;
+        PCWriteCond = 1'b0;
+        ShiftControl = 2'b00;
+        FlagComp = 1'b0;
+        PCSrc = 1'b0;
+        MemTOreg = 2'b01;
+        ResetRegA = 1'b0;
+        FlagRd = 64'd0;
+        NextStage = SendEnd;
+    end
+    TypeR: begin
+        Nshift = 6'b000000;
+        ShiftScr = 1'b1;
+        PCwrite = 1'b0;
+        AluSrcA = 2'b00;
+        ImemWR = 1'b0;
+        AluSrcB = 2'b00;
+        ALUFct = 3'b000;
+        LoadIr = 1'b0;
+        LoadRegA = 1'b1;
+        LoadRegB = 1'b1;
+        LoadOut = 1'b0;
+        WriteReg =  1'b0;
+        DMemControl = 1'b0;
+        LoadRegC = 1'b0;
+        PCWriteCond = 1'b0;
+        ShiftControl = 2'b00;
+        FlagComp = 1'b0;
+        PCSrc = 1'b0;
+        MemTOreg = 2'b00;
+        ResetRegA = 1'b0;
+        FlagRd = 64'd0;
+        NextStage = instructions;
+    end
+    AND: begin
+        Nshift = 6'b000000;
+        ShiftScr = 1'b1;
+        PCwrite = 1'b0;
+        AluSrcA = 2'b01;
+        ImemWR = 1'b0;
+        AluSrcB = 2'b00;
+        ALUFct = 3'b011;
+        LoadIr = 1'b0;
+        LoadRegA = 1'b0;
+        LoadRegB = 1'b0;
+        LoadOut = 1'b1;
+        WriteReg =  1'b0;
+        DMemControl = 1'b0;
+        LoadRegC = 1'b0;
+        PCWriteCond = 1'b0;
+        ShiftControl = 2'b00;
+        FlagComp = 1'b0;
+        PCSrc = 1'b0;
+        MemTOreg = 2'b00;
+        ResetRegA = 1'b0;
+        FlagRd = 64'd0;
+        NextStage = RegSave;
+    end
+    ADD: begin
+        Nshift = 6'b000000;
+        ShiftScr = 1'b1;
+        PCwrite = 1'b0;
+        AluSrcA = 2'b01;
+        ImemWR = 1'b0;
+        AluSrcB = 2'b00;
+        ALUFct = 3'b001;
+        LoadIr = 1'b0;
+        LoadRegA = 1'b0;
+        LoadRegB = 1'b0;
+        LoadOut = 1'b1;
+        WriteReg =  1'b0;
+        DMemControl = 1'b0;
+        LoadRegC = 1'b0;
+        PCWriteCond = 1'b0;
+        ShiftControl = 2'b00;
+        FlagComp = 1'b0;
+        PCSrc = 1'b0;
+        MemTOreg = 2'b00;
+        ResetRegA = 1'b0;
+        FlagRd = 64'd0;
+        NextStage = RegSave;
+    end
+    SUB: begin
+        Nshift = 6'b000000;
+        ShiftScr = 1'b1;
+        PCwrite = 1'b0;
+        AluSrcA = 2'b01;
+        ImemWR = 1'b0;
+        AluSrcB = 2'b00;
+        ALUFct = 3'b010;
+        LoadIr = 1'b0;
+        LoadRegA = 1'b0;
+        LoadRegB = 1'b0;
+        LoadOut = 1'b1;
+        WriteReg =  1'b0;
+        DMemControl = 1'b0;
+        LoadRegC = 1'b0;
+        PCWriteCond = 1'b0;
+        ShiftControl = 2'b00;
+        FlagComp = 1'b0;
+        PCSrc = 1'b0;
+        MemTOreg = 2'b00;
+        ResetRegA = 1'b0;
+        FlagRd = 64'd0;
+        NextStage = RegSave;
+    end
+    RegSave: begin
+        Nshift = 6'b000000;
+        ShiftScr = 1'b1;
+        PCwrite = 1'b0;
+        AluSrcA = 2'b01;
+        ImemWR = 1'b0;
+        AluSrcB = 2'b00;
+        LoadIr = 1'b0;
+        LoadRegA = 1'b0;
+        LoadRegB = 1'b0;
+        LoadOut = 1'b0;
+        WriteReg =  1'b1;
+        DMemControl = 1'b0;
+        LoadRegC = 1'b0;
+        PCWriteCond = 1'b0;
+        ShiftControl = 2'b00;
+        FlagComp = 1'b0;
+        PCSrc = 1'b0;
+        MemTOreg = 2'b00;
+        ResetRegA = 1'b0;
+        FlagRd = 64'd0;
+        NextStage = SendEnd;
+    end
+    TypeSB: begin
+        Nshift = 6'b000001;
+        ShiftScr = 1'b1;
+        PCwrite = 1'b0;//
+        AluSrcA = 2'b00;//
+        ImemWR = 1'b0;//
+        AluSrcB = 2'b11;//
+        ALUFct = 3'b001;//
+        LoadIr = 1'b0;//
+        LoadRegA = 1'b1;//
+        LoadRegB = 1'b1;//
+        LoadOut = 1'b1;//
+        WriteReg =  1'b0;//
+        DMemControl = 1'b0;//
+        LoadRegC = 1'b0;//
+        PCWriteCond = 1'b0;//
+        ShiftControl = 2'b00;
+        FlagComp = 1'b0;
+        PCSrc = 1'b0;
+        MemTOreg = 2'b00;
+        ResetRegA = 1'b0;
+        FlagRd = 64'd0;
+        NextStage = instructions;
+    end
+    BEQ: begin
+        Nshift = 6'b000000;
+        ShiftScr = 1'b1;
+        PCwrite = 1'b0;
+        AluSrcA = 2'b01;
+        ImemWR = 1'b0;
+        AluSrcB = 2'b00;
+        ALUFct = 3'b010;
+        LoadIr = 1'b0;
+        LoadRegA = 1'b0;
+        LoadRegB = 1'b0;
+        LoadOut = 1'b0;
+        WriteReg =  1'b0;
+        DMemControl = 1'b0;
+        LoadRegC = 1'b0;
+        PCWriteCond = 1'b1;
+        ShiftControl = 2'b00;
+        FlagComp = AluZero;
+        PCSrc = 1'b1;
+        MemTOreg = 2'b00;
+        ResetRegA = 1'b0;
+        FlagRd = 64'd0;
+        NextStage = SendEnd;
+    end
+    BNE: begin
+        Nshift = 6'b000001;
+        ShiftScr = 1'b1;
+        PCwrite = 1'b0;
+        AluSrcA = 2'b01;
+        ImemWR = 1'b0;
+        AluSrcB = 2'b00;
+        ALUFct = 3'b010;
+        LoadIr = 1'b0;
+        LoadRegA = 1'b0;
+        LoadRegB = 1'b0;
+        LoadOut = 1'b0;
+        WriteReg =  1'b0;
+        DMemControl = 1'b0;
+        LoadRegC = 1'b0;
+        PCWriteCond = 1'b1;
+        ShiftControl = 2'b00;
+        FlagComp = ~AluZero;
+        PCSrc = 1'b1;
+        MemTOreg = 2'b00;
+        ResetRegA = 1'b0;
+        FlagRd = 64'd0;
+        NextStage = SendEnd;
+    end
+    BGE: begin //nao testado
+        ShiftScr = 1'b1;
+        Nshift = 6'b000000;
+        PCwrite = 1'b0;
+        AluSrcA = 2'b01;
+        ImemWR = 1'b0;
+        AluSrcB = 2'b00;
+        ALUFct = 3'b111;
+        LoadIr = 1'b0;
+        LoadRegA = 1'b0;
+        LoadRegB = 1'b0;
+        LoadOut = 1'b0;
+        WriteReg =  1'b0;
+        DMemControl = 1'b0;
+        LoadRegC = 1'b0;
+        PCWriteCond = 1'b1;
+        ShiftControl = 2'b00;
+        FlagComp = AluEG;
+        PCSrc = 1'b1;
+        MemTOreg = 2'b00;
+        ResetRegA = 1'b0;
+        FlagRd = 64'd0;
+        NextStage = SendEnd;
+    end
+    BLT: begin //nao testado
+        ShiftScr = 1'b1;
+        Nshift = 6'b000000;
+        PCwrite = 1'b0;
+        AluSrcA = 2'b01;
+        ImemWR = 1'b0;
+        AluSrcB = 2'b00;
+        ALUFct = 3'b111;
+        LoadIr = 1'b0;
+        LoadRegA = 1'b0;
+        LoadRegB = 1'b0;
+        LoadOut = 1'b0;
+        WriteReg =  1'b0;
+        DMemControl = 1'b0;
+        LoadRegC = 1'b0;
+        PCWriteCond = 1'b1;
+        ShiftControl = 2'b00;
+        FlagComp = AluLT;
+        PCSrc = 1'b1;
+        MemTOreg = 2'b00;
+        ResetRegA = 1'b0;
+        FlagRd = 64'd0;
+        NextStage = SendEnd;
+    end
+    LUI: begin
+        ShiftScr = 1'b1;
+        Nshift = 6'b000000;
+        PCwrite = 1'b0;
+        AluSrcA = 2'b01;
+        ImemWR = 1'b0;
+        AluSrcB = 2'b10;
+        ALUFct = 3'b001;
+        LoadIr = 1'b0;
+        LoadRegA = 1'b0;
+        LoadRegB = 1'b0;
+        LoadOut = 1'b1;
+        WriteReg =  1'b0;
+        DMemControl = 1'b0;
+        LoadRegC = 1'b0;
+        PCWriteCond = 1'b0;
+        ShiftControl = 2'b00;
+        FlagComp = 1'b0;
+        PCSrc = 1'b0;
+        MemTOreg = 2'b00;
+        ResetRegA = 1'b1;
+        FlagRd = 64'd0;
+        NextStage = RegSave;
+    end
+    SD: begin
+        ShiftScr = 1'b1;
+        Nshift = 6'b000000;
+        PCwrite = 1'b0;
+        AluSrcA = 2'b00;
+        ImemWR = 1'b0;
+        AluSrcB = 2'b00;
+        ALUFct = 3'b000;
+        LoadIr = 1'b0;
+        LoadRegA = 1'b1;
+        LoadRegB = 1'b1;
+        LoadOut = 1'b0;
+        WriteReg =  1'b0;
+        DMemControl = 1'b0;
+        LoadRegC = 1'b0;
+        PCWriteCond = 1'b0;
+        ShiftControl = 2'b00;
+        FlagComp = 1'b0;
+        PCSrc = 1'b0;
+        MemTOreg = 2'b00;
+        ResetRegA = 1'b0;
+        FlagRd = 64'd0;
+        NextStage = SD2;
+    end
+    SD2: begin
+        ShiftScr = 1'b1;
+        Nshift = 6'b000000;
+        PCwrite = 1'b0;
+        AluSrcA = 2'b01;
+        ImemWR = 1'b0;
+        AluSrcB = 2'b10;
+        ALUFct = 3'b001;
+        LoadIr = 1'b0;
+        LoadRegA = 1'b0;
+        LoadRegB = 1'b0;
+        LoadOut = 1'b1;
+        WriteReg =  1'b0;
+        DMemControl = 1'b0;
+        LoadRegC = 1'b0;
+        PCWriteCond = 1'b0;
+        ShiftControl = 2'b00;
+        FlagComp = 1'b0;
+        PCSrc = 1'b0;
+        MemTOreg = 2'b00;
+        ResetRegA = 1'b0;
+        FlagRd = 64'd0;
+        NextStage = SD3;
+    end
+    SD3: begin
+        ShiftScr = 1'b1;
+        Nshift = 6'b000000;
+        PCwrite = 1'b0;
+        AluSrcA = 2'b01;
+        ImemWR = 1'b0;
+        AluSrcB = 2'b10;
+        ALUFct = 3'b001;
+        LoadIr = 1'b0;
+        LoadRegA = 1'b0;
+        LoadRegB = 1'b0;
+        LoadOut = 1'b0;
+        WriteReg =  1'b0;
+        DMemControl = 1'b0;
+        LoadRegC = 1'b1;
+        PCWriteCond = 1'b0;
+        ShiftControl = 2'b00;
+        FlagComp = 1'b0;
+        PCSrc = 1'b0;
+        MemTOreg = 2'b00;
+        ResetRegA = 1'b0;
+        FlagRd = 64'd0;
+        NextStage = SD3;
+    end
+    SD4: begin
+        ShiftScr = 1'b1;
+        Nshift = 6'b000000;
+        PCwrite = 1'b0;
+        AluSrcA = 2'b00;
+        ImemWR = 1'b0;
+        AluSrcB = 2'b00;
+        ALUFct = 3'b000;
+        LoadIr = 1'b0;
+        LoadRegA = 1'b0;
+        LoadRegB = 1'b0;
+        LoadOut = 1'b0;
+        WriteReg =  1'b0;
+        DMemControl = 1'b1;
+        LoadRegC = 1'b0;
+        PCWriteCond = 1'b0;
+        ShiftControl = 2'b00;
+        FlagComp = 1'b0;
+        PCSrc = 1'b0;
+        MemTOreg = 2'b00;
+        ResetRegA = 1'b0;
+        FlagRd = 64'd0;
+        NextStage = SendEnd;
+    end
+    JALS: begin    
+        PCwrite = 1'b0;
+        ShiftScr = 1'b1;
+        AluSrcA = 2'b00;
+        ImemWR = 1'b0;
+        AluSrcB = 2'b00;
+        ALUFct = 3'b000;
+        LoadIr = 1'b0;
+        LoadRegA = 1'b1;
+        LoadRegB = 1'b0;
+        LoadOut = 1'b0;
+        WriteReg =  1'b1;
+        DMemControl = 1'b0;
+        LoadRegC = 1'b0;
+        PCWriteCond = 1'b0;
+        ShiftControl = 2'b00;
+        FlagComp = 1'b0;
+        PCSrc = 1'b0;
+        MemTOreg = 2'b10;
+        ResetRegA = 1'b0;
+        Nshift = 6'b000000;
+        FlagRd = 64'd0;
+        NextStage = instructions;
+    end
+    JAL: begin    
+        PCwrite = 1'b0;
+        ShiftScr = 1'b1;
+        AluSrcA = 2'b00;
+        ImemWR = 1'b0;
+        AluSrcB = 2'b11;
+        ALUFct = 3'b001;
+        LoadIr = 1'b0;
+        LoadRegA = 1'b0;
+        LoadRegB = 1'b0;
+        LoadOut = 1'b1;
+        WriteReg =  1'b0;
+        DMemControl = 1'b0;
+        LoadRegC = 1'b0;
+        PCWriteCond = 1'b0;
+        ShiftControl = 2'b00;
+        FlagComp = 1'b0;
+        PCSrc = 1'b0;
+        MemTOreg = 2'b10;
+        ResetRegA = 1'b0;
+        Nshift = 6'b000001;
+        FlagRd = 64'd0;
+        NextStage = JAL3;
+    end
+    JAL3: begin    
+        PCwrite = 1'b1;
+        ShiftScr = 1'b1;
+        AluSrcA = 2'b00;
+        ImemWR = 1'b0;
+        AluSrcB = 2'b11;
+        ALUFct = 3'b001;
+        LoadIr = 1'b0;
+        LoadRegA = 1'b0;
+        LoadRegB = 1'b0;
+        LoadOut = 1'b0;
+        WriteReg =  1'b0;
+        DMemControl = 1'b0;
+        LoadRegC = 1'b0;
+        PCWriteCond = 1'b0;
+        ShiftControl = 2'b00;
+        FlagComp = 1'b0;
+        PCSrc = 1'b1;
+        MemTOreg = 2'b10;
+        ResetRegA = 1'b0;
+        Nshift = 6'b000001;
+        FlagRd = 64'd0;
+        NextStage = SendEnd;
+    end
+    JALR: begin    
+        PCwrite = 1'b0;
+        ShiftScr = 1'b1;
+        AluSrcA = 2'b01;
+        ImemWR = 1'b0;
+        AluSrcB = 2'b10;
+        ALUFct = 3'b001;
+        LoadIr = 1'b0;
+        LoadRegA = 1'b0;
+        LoadRegB = 1'b0;
+        LoadOut = 1'b1;
+        WriteReg =  1'b0;
+        DMemControl = 1'b0;
+        LoadRegC = 1'b0;
+        PCWriteCond = 1'b0;
+        ShiftControl = 2'b00;
+        FlagComp = 1'b0;
+        PCSrc = 1'b0;
+        MemTOreg = 2'b10;
+        ResetRegA = 1'b0;
+        Nshift = 6'b000001;
+        FlagRd = 64'd0;
+        NextStage = JAL3;
+    end    
+    endcase
+end
+ 
+endmodule

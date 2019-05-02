@@ -1,0 +1,61 @@
+module control_sizeOUT(
+	input logic [63:0]Dadoin,
+	input logic [31:0]instrucao,
+	output logic [63:0]Dadoout
+);
+
+always_comb
+    case(instrucao[14:12])
+    3'b000:begin
+    //lb
+        case(Dadoin[7])
+        1'b0:begin
+            Dadoout = {56'b00000000000000000000000000000000000000000000000000000000, Dadoin[7:0]};
+        end
+        1'b1:begin
+            Dadoout = {56'b11111111111111111111111111111111111111111111111111111111, Dadoin[7:0]};
+        end
+        endcase
+    end
+    3'b001:begin
+    //lh
+        case(Dadoin[15])
+        1'b0:begin
+            Dadoout = {48'b000000000000000000000000000000000000000000000000, Dadoin[15:0]};
+        end
+        1'b1:begin
+            Dadoout = {48'b111111111111111111111111111111111111111111111111, Dadoin[15:0]};
+        end
+        endcase
+    end
+    3'b010:begin
+    //lw
+        case(Dadoin[31])
+        1'b0:begin
+            Dadoout = {32'b00000000000000000000000000000000, Dadoin[31:0]};
+        end
+        1'b1:begin
+            Dadoout = {32'b11111111111111111111111111111111, Dadoin[31:0]};
+        end
+        endcase
+    end
+    3'b100:begin
+    //lbu
+        Dadoout = {56'b00000000000000000000000000000000000000000000000000000000, Dadoin[7:0]};
+    end
+    3'b101:begin
+    //lhu
+        Dadoout = {48'b000000000000000000000000000000000000000000000000, Dadoin[15:0]};
+    end
+    3'b110:begin
+    //lwu
+        Dadoout = {32'b00000000000000000000000000000000, Dadoin[31:0]};
+    end
+    default begin
+        //demais casos
+        Dadoout = Dadoin;
+    end
+    endcase
+end
+
+endmodule 
