@@ -1,2 +1,2 @@
 # hardware_infrastructure
-Resolution of some Hardware Infrastructure RISC-V assembly questions
+A RISC-V processor simulator made using SystemVerilog, Verilog anv VHDL. Also it contains some questions using RISC-V Assembly
